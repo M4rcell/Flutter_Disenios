@@ -1,5 +1,6 @@
 
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -166,23 +167,31 @@ class BotonesPage extends StatelessWidget {
       children: [
         TableRow(
           children: [
-          _crearBotonesRedondeado(),
-          _crearBotonesRedondeado(),
-          ]
+          _crearBotonesRedondeado(Colors.blue ,Icons.border_all,'General'),
+          _crearBotonesRedondeado(Colors.purpleAccent ,Icons.directions_bus,'Bus'),
+          ] 
         ),
 
         TableRow(
           children: [
-            _crearBotonesRedondeado(),
-          _crearBotonesRedondeado(),
+            _crearBotonesRedondeado(Colors.pinkAccent ,Icons.shop,'Buy'),
+          _crearBotonesRedondeado(Colors.orange ,Icons.insert_drive_file,'File'),
            
           ]
         ),
 
         TableRow(
           children: [
-          _crearBotonesRedondeado(),
-          _crearBotonesRedondeado(),
+          _crearBotonesRedondeado(Colors.blueAccent ,Icons.movie_filter,'Movie'),
+          _crearBotonesRedondeado(Colors.green ,Icons.cloud,'Grocery'),
+ 
+          ]
+        )
+        ,
+         TableRow(
+          children: [
+          _crearBotonesRedondeado(Colors.red ,Icons.collections,'Photos'),
+          _crearBotonesRedondeado(Colors.teal ,Icons.help_outline,'Help'),
  
           ]
         )
@@ -191,29 +200,33 @@ class BotonesPage extends StatelessWidget {
     );
 
   }
-  Widget _crearBotonesRedondeado(){
+  Widget _crearBotonesRedondeado(Color color,IconData icono, String texto){
+   // BackdropFilter le Da la Opacidad dettra de los botones
+    return  BackdropFilter(
+      filter:ImageFilter.blur(sigmaX: 0,sigmaY: 0) ,
+      child: Container(
+          height: 180.0,
+          margin: EdgeInsets.all(15.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(20.0),
 
-    return Container(
-      height: 180.0,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(62, 66, 107, 0.7),
-        borderRadius: BorderRadius.circular(20.0),
-
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          SizedBox(height: 5.0),
-          CircleAvatar(
-            backgroundColor: Colors.pinkAccent,
-            radius: 35.0,
-            child: Icon(Icons.swap_calls, color: Colors.white,size: 30.0,),
-            
           ),
-          Text('Cosa',style: TextStyle(color: Colors.pinkAccent)),
-          SizedBox(height: 5.0)
-        ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(height: 5.0),
+              CircleAvatar(
+                backgroundColor: color,
+                radius: 35.0,
+                child: Icon(icono, color: Colors.white,size: 30.0,),
+                
+              ),
+              Text(texto,style: TextStyle(color: color)),
+              SizedBox(height: 5.0)
+            ],
+          ),
+        
       ),
     );
 
